@@ -9,22 +9,22 @@
       <div class="input-group mb-3">
         <span class="input-group-text">Contact Name</span>
         <input id="contactName" name="contactName" type="text" class="form-control" 
-        value="<%= businessContact.Name %>"
-        aria-label="Contact Name" aria-describedby="Contact Name Input" required>
+        value="<%= contact.Name %>"
+        aria-label="Movie Name" aria-describedby="Movie Name Input" required>
       </div>
 
       <div class="input-group mb-3">
           <span class="input-group-text">Contact Number</span>
           <input id="contactNumber" name="contactNumber" type="text" class="form-control" 
-          value="<%= businessContact.Number %>"
-          aria-label="Contact Number" aria-describedby="Contact Number Input" required>
+          value="<%= contact.Number %>"
+          aria-label="Director Name" aria-describedby="Movie Director Input" required>
         </div>
 
       <div class="input-group mb-3">
       <span class="input-group-text">Email Address</span>
       <input id="contactEmailAddress" name="contactEmailAddress" type="text" class="form-control" 
-      value="<%= businessContact.EmailAddress %>"
-      aria-label="Email Address" aria-describedby="Email Address Input" required>
+      value="<%= contact.EmailAddress %>"
+      aria-label="Movie Year" aria-describedby="Movie Year Input" required>
       </div>
       
       <% if(title == "Edit") { %>

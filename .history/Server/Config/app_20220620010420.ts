@@ -25,7 +25,7 @@ import User from '../Models/user';
 
 // import the router data
 import indexRouter from '../Routes/index'; // top-level routes
-import businessContactListRouter from '../Routes/businessContact-list'; // businessContact-list routes
+import movieListRouter from '../Routes/businessContact-list'; // movie-list routes
 import authRouter from '../Routes/auth'; // authentication routes
 
 const app = express();
@@ -82,7 +82,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // use routes
 app.use('/', indexRouter);
-app.use('/', businessContactListRouter);
+app.use('/', movieListRouter);
 app.use('/', authRouter);
 
 // catch 404 and forward to error handler
