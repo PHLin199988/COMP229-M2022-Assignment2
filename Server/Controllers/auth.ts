@@ -1,69 +1,70 @@
 import express from 'express';
 
-// require passport functionality
+// need passport functionality
 import passport from 'passport';
 
-// require User Model
+// need to include the User model for authentication functions
 import User from '../Models/user';
 
+// import the DisplayName Utility method
 import { UserDisplayName } from '../Util';
 
-/* Display Functions */
-export function DisplayLoginPage(req: express.Request, res: express.Response, next: express.NextFunction) 
+// Display Functions
+export function DisplayLoginPage(req: express.Request, res: express.Response, next: express.NextFunction)
 {
     if(!req.user)
     {
-        return res.render('index', {title: "Login", page: "login", messages: req.flash("loginMessage"), displayName: UserDisplayName(req)});
+        return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req)});
     }
     return res.redirect('/movie-list');
 }
 
-export function DisplayRegisterPage(req: express.Request, res: express.Response, next: express.NextFunction) 
+export function DisplayRegisterPage(req: express.Request, res: express.Response, next: express.NextFunction)
 {
     if(!req.user)
     {
-        return res.render('index', {title: "Register", page: "register", messages: req.flash("registerMessage"), displayName:  UserDisplayName(req)});
+        return res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req)});
     }
     return res.redirect('/movie-list');
 }
 
-/* Processing Functions */
-export function ProcessLoginPage(req: express.Request, res: express.Response, next: express.NextFunction) 
+// Processing Functions
+export function ProcessLoginPage(req: express.Request, res: express.Response, next: express.NextFunction)
 {
-    passport.authenticate('local', function(err, user, info)
+   passport.authenticate('local', function(err, user, info)
+   {
+    // are there server errors?
+    if(err)
     {
-        // are there server errors?
+        console.error(err);
+        res.end(err);
+    }
+
+    // are there login errors?
+    if(!user)
+    {
+        req.flash('loginMessage', 'Authentication Error!');
+        return res.redirect('/login');
+    }
+
+    // no problems - we have a good username and password
+    req.logIn(user, function(err)
+    {
+        // are there db errors?
         if(err)
         {
             console.error(err);
             res.end(err);
         }
 
-        // are there login errors?
-        if(!user)
-        {
-            req.flash('loginMessage', 'Authentication Error!');
-            return res.redirect('/login');
-        }
-
-        // no problems - we have a good username and password combination
-        req.logIn(user, function(err)
-        {
-            // are there db errors?
-            if(err)
-            {
-                console.error(err);
-                res.end(err);
-            }
-
-            return res.redirect('/movie-list');
-        });
-    })(req, res, next);
+        return res.redirect('/movie-list');
+    });
+   })(req, res, next);
 }
-
-export function ProcessRegisterPage(req: express.Request, res: express.Response, next: express.NextFunction) 
+ 
+export function ProcessRegisterPage(req: express.Request, res: express.Response, next: express.NextFunction)
 {
-    // Instantiate a new User
+    // instantiate a new user object
     let newUser = new User
     ({
         username: req.body.username,
@@ -71,7 +72,6 @@ export function ProcessRegisterPage(req: express.Request, res: express.Response,
         DisplayName: req.body.firstName + " " + req.body.lastName
     });
 
-    // Add the New User to the Database
     User.register(newUser, req.body.password, function(err)
     {
         if(err)
@@ -89,7 +89,7 @@ export function ProcessRegisterPage(req: express.Request, res: express.Response,
             return res.redirect('/register');
         }
 
-        // if everything is ok - user has been registered
+        // everything is ok - user has been registered
 
         // automatically login the user
         return passport.authenticate('local')(req, res, function()
@@ -99,7 +99,7 @@ export function ProcessRegisterPage(req: express.Request, res: express.Response,
     });
 }
 
-export function ProcessLogoutPage(req: express.Request, res: express.Response, next: express.NextFunction) 
+export function ProcessLogoutPage(req: express.Request, res: express.Response, next: express.NextFunction)
 {
     req.logOut(function(err)
     {
@@ -109,7 +109,7 @@ export function ProcessLogoutPage(req: express.Request, res: express.Response, n
             res.end(err);
         }
 
-        console.log('User Logged Out');
+        console.log("User Logged Out");
     });
 
     res.redirect('/login');
