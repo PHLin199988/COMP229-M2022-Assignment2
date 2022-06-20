@@ -26,8 +26,8 @@
                             <th scope="row" class="text-center"><%= count + 1 %></th>
                             <td><%= businessContacts[count].Name %></td>
                             <td><%= businessContacts[count].Number %></td>
-                            <td><%= businessContacts[count].EmailAddress %></td>
-                            <td class="text-center"><a href="/edit/<%= businessContacts[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Update</a></td>
+                            <td><%= businessContacts[count].EmailAddr %></td>
+                            <td class="text-center"><a href="/edit/<%= businessContacts[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
                             <td class="text-center"><a href="/delete/<%= businessContacts[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
                         </tr>
                     <% } %>

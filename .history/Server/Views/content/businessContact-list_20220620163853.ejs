@@ -10,8 +10,8 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col" class="text-center">#</th>
-                        <th scope="col">Contact Name</th>
-                        <th scope="col">Contact Number</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Number</th>
                         <th scope="col">Email Address</th>
                         
                         <th></th>
@@ -27,7 +27,7 @@
                             <td><%= businessContacts[count].Name %></td>
                             <td><%= businessContacts[count].Number %></td>
                             <td><%= businessContacts[count].EmailAddress %></td>
-                            <td class="text-center"><a href="/edit/<%= businessContacts[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Update</a></td>
+                            <td class="text-center"><a href="/edit/<%= businessContacts[count]._id %>" class="btn btn-primary btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
                             <td class="text-center"><a href="/delete/<%= businessContacts[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
                         </tr>
                     <% } %>

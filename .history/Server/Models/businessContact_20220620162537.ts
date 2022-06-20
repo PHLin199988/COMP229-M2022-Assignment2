@@ -5,8 +5,8 @@ const Schema = mongoose.Schema; // alias for mongoose.Schema
 // Step 2 - Create a Schema that matches the data
 const BusinessContactSchema = new Schema
 ({
-    Name: String,
-    Number: String,
+    ContactName: String,
+    ContactNumber: String,
     EmailAddress: String,
 },
 {

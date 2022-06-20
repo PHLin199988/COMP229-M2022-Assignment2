@@ -45,12 +45,12 @@ export function DisplayEditPage(req: express.Request, res: express.Response, nex
 
 export function ProcessAddPage(req: express.Request, res: express.Response, next: express.NextFunction): void 
 {
-  // instantiate a new businessContact to Add
+  // instantiate a new bBusinessContact to Add
   let newBusinessContact = new BusinessContact
   ({
-    "Name": req.body.contactName,
-    "Number": req.body.contactNumber,
-    "EmailAddress": req.body.contactEmailAddress
+    "ContactName": req.body.businessContactName,
+    "ContactNumber": req.body.businessContactNumber,
+    "EmailAddress": req.body.businessContactEmailAddress 
   });
 
   // Insert the new BusinessContact object into the database (businessContacts collection)
@@ -75,9 +75,9 @@ export function ProcessEditPage(req: express.Request, res: express.Response, nex
   let updatedBusinessContact = new BusinessContact
   ({
     "_id": id,
-    "Name": req.body.contactName,
-    "Number": req.body.contactNumber,
-    "EmailAddress": req.body.contactEmailAddress
+    "ContactName": req.body.businessContactName,
+    "ContactNumber": req.body.businessContactNumber,
+    "EmailAddress": req.body.businessContactEmailAddress
   });
 
   // update the businessContact in the database

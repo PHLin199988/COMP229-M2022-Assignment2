@@ -1,0 +1,41 @@
+<div class="container">
+  <h1 class="col-lg-6 col-md-10 col-sm-10"><%= title %> BusinessContact</h1>
+  <hr>
+  <div id="messageArea"></div>
+
+  <div class="row justify-content-lg-center g-3">
+    <form method="POST" class="col-lg-6 col-md-10 col-sm-10">
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">Contact Name</span>
+        <input id="contactName" name="contactName" type="text" class="form-control" 
+        value="<%= BusinessContacts.Name %>"
+        aria-label="Contact Name" aria-describedby="Contact Name Input" required>
+      </div>
+
+      <div class="input-group mb-3">
+          <span class="input-group-text">Contact Number</span>
+          <input id="contactNumber" name="contactNumber" type="text" class="form-control" 
+          value="<%= BusinessContacts.Number %>"
+          aria-label="Contact Number" aria-describedby="Contact Number Input" required>
+        </div>
+
+      <div class="input-group mb-3">
+      <span class="input-group-text">Email Address</span>
+      <input id="contactEmailAddress" name="contactEmailAddress" type="text" class="form-control" 
+      value="<%= BusinessContacts.EmailAddress %>"
+      aria-label="Email Address" aria-describedby="Email Address Input" required>
+      </div>
+      
+      <% if(title == "Edit") { %>
+      <button id="editButton" type="submit" class="btn btn-primary"><i class="fas fa-edit fa-lg"></i> Edit</button>
+      <% } else {%>
+      <button id="addButton" type="submit" class="btn btn-primary"><i class="fas fa-plus-circle fa-lg"></i> Add</button>
+      <% } %>  
+
+      <a href="/businessContact-list" id="cancelButton" type="button" class="btn btn-warning"><i class="fas fa-undo fa-lg"></i> Cancel</a>
+    
+    </form>
+
+  </div>
+</div>
